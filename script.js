@@ -299,4 +299,3 @@ passwordInput.addEventListener('keypress', (e) => {
 
 // Для демонстрации можно автоматически войти (раскомментируйте если нужно)
 // setTimeout(login, 500);
-setTimeout(login, 500);
