@@ -1,13 +1,102 @@
 <!DOCTYPE html>
-<html lang="en">
-<hea>
+<html lang="ru">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link href="styles.css" rel="stylesheet">
+    <title>Админ-панель · Чат поддержки</title>
+    <!-- Font Awesome 5 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- Подключаем CSS -->
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <p class="txt1">Hello world!</p>
+    <!-- Модальное окно авторизации -->
+    <div class="auth-overlay" id="authOverlay">
+        <div class="auth-card">
+            <h2>🔐 Админ-панель</h2>
+            <p>Вход в систему поддержки</p>
+            
+            <div class="input-group">
+                <label><i class="far fa-user"></i> Логин</label>
+                <input type="text" id="loginInput" placeholder="admin" value="admin">
+            </div>
+            
+            <div class="input-group">
+                <label><i class="fas fa-lock"></i> Пароль</label>
+                <input type="password" id="passwordInput" placeholder="••••••••" value="admin123">
+            </div>
+            
+            <button class="auth-btn" id="loginBtn">
+                <i class="fas fa-sign-in-alt"></i> Войти в панель
+            </button>
+            
+            <p style="margin-top: 20px; font-size: 13px; color: #8aa0b5; border: none;">
+                <i class="fas fa-info-circle"></i> admin / admin123
+            </p>
+        </div>
+    </div>
+
+    <!-- Основная админ-панель (изначально скрыта) -->
+    <div class="admin-panel" id="adminPanel">
+        <!-- Шапка -->
+        <header class="panel-header">
+            <h1>
+                <i class="fas fa-comments"></i>
+                Чат поддержки · Админ-панель
+            </h1>
+            <div style="display: flex; align-items: center;">
+                <div class="admin-badge">
+                    <i class="fas fa-shield-alt"></i>
+                    <span id="adminName">Администратор</span>
+                </div>
+                <button class="logout-btn" id="logoutBtn">
+                    <i class="fas fa-sign-out-alt"></i> Выйти
+                </button>
+            </div>
+        </header>
+
+        <!-- Рабочая область: список чатов + интерфейс ответа -->
+        <div class="chat-workspace">
+            <!-- Левая панель со списком чатов -->
+            <div class="chat-list-panel">
+                <div class="search-box">
+                    <input type="text" id="searchChats" placeholder="🔍 Поиск по чатам...">
+                </div>
+                
+                <ul class="chat-items" id="chatList">
+                    <!-- Чаты будут загружаться через JavaScript -->
+                </ul>
+            </div>
+
+            <!-- Правая панель с перепиской и ответом -->
+            <div class="reply-panel" id="replyPanel">
+                <div class="chat-header" id="chatHeader">
+                    <h2>Выберите чат</h2>
+                    <p>Администратор · ответы в реальном времени</p>
+                </div>
+
+                <!-- История сообщений -->
+                <div class="message-history" id="messageHistory">
+                    <!-- Сообщения появятся при выборе чата -->
+                </div>
+
+                <!-- Блок ответа (скрыт, пока не выбран чат) -->
+                <div class="reply-box" id="replyBox" style="display: none;">
+                    <div class="reply-input-area">
+                        <textarea id="replyMessage" placeholder="Введите ответ пользователю... (Enter для отправки, Shift+Enter для новой строки)" rows="2"></textarea>
+                        <button class="send-btn" id="sendReplyBtn">
+                            <i class="fas fa-paper-plane"></i>
+                            <span>Отправить</span>
+                        </button>
+                    </div>
+                    <div style="font-size: 12px; color: #7f9ab9; margin-top: 10px;">
+                        <i class="far fa-keyboard"></i> Нажмите Enter для отправки
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>
